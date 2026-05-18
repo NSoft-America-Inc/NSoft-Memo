@@ -52,7 +52,20 @@ case "$cmd" in
       echo "ℹ️ 삭제할 메모가 없습니다"
     fi
     ;;
+  search)
+    shift
+    keyword="$1"
+    if [ -z "$keyword" ]; then
+      echo "⚠️ 검색할 키워드를 입력하세요 (예: memo search 테스트)"
+      exit 1
+    fi
+    if [ -f "$MEMO_FILE" ]; then
+      grep -i "$keyword" "$MEMO_FILE"
+    else
+      echo "ℹ️ 검색할 메모가 없습니다"
+    fi
+    ;;
   *)
-    echo "사용법: memo add <내용> | memo list | memo clear | memo count | memo delete <인덱스>"
+    echo "사용법: memo add <내용> | memo list | memo clear | memo count | memo delete <인덱스> | memo search <키워드>"
     ;;
 esac
