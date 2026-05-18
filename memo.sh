@@ -15,7 +15,15 @@ case "$cmd" in
       echo "(메모 없음)"
     fi
     ;;
+  clear)
+    if [ -f "$MEMO_FILE" ]; then
+      rm "$MEMO_FILE"
+      echo "✅ 모든 메모 삭제됨"
+    else
+      echo "ℹ️ 삭제할 메모가 없습니다"
+    fi
+    ;;
   *)
-    echo "사용법: memo add <내용> | memo list"
+    echo "사용법: memo add <내용> | memo list | memo clear"
     ;;
 esac
