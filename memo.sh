@@ -23,7 +23,15 @@ case "$cmd" in
       echo "ℹ️ 삭제할 메모가 없습니다"
     fi
     ;;
+  count)
+    if [ -f "$MEMO_FILE" ]; then
+      total_count=$(wc -l < "$MEMO_FILE" | tr -d ' ')
+      echo "📊 총 메모 개수: ${total_count}개"
+    else
+      echo "📊 총 메모 개수: 0개"
+    fi
+    ;;
   *)
-    echo "사용법: memo add <내용> | memo list | memo clear"
+    echo "사용법: memo add <내용> | memo list | memo clear | memo count"
     ;;
 esac
